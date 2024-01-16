@@ -7,6 +7,14 @@ class CustomUserCreationForm(UserCreationForm):
         model = CustomUser
         fields = ('email', 'username', 'is_artist')
 
+        # def __init__(self, *args, **kwargs):
+        #     super().__init__(*args, **kwargs)
+
+        #     self.fields['email'].widget.attrs.update({'class': 'custom-form-input'})
+        #     self.fields['username'].widget.attrs.update({'class': 'custom-form-input'})
+        #     self.fields['password1'].widget.attrs.update({'class': 'custom-form-input'})
+        #     self.fields['password2'].widget.attrs.update({'class': 'custom-form-input'})
+
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
