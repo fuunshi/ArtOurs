@@ -11,10 +11,24 @@
     {% endblock link %}
 </head>
 
-<body>
-    {% block body %}
 
-    {% endblock %}
+<body>
+    <section id='navbar'>
+        <nav>
+            <div class="flex">
+                <div class="flex">
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'home' %}">About</a>
+                    <a href="{% url 'home' %}">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <section id='main'>
+        {% block body %}
+        
+        {% endblock %}
+    </section>
 </body>
 
 </html>
