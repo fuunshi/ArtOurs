@@ -23,3 +23,6 @@ __pycache__/
 .vscode/
 *.swp
 .DS_Store
+
+# Personal files
+Documentation/
