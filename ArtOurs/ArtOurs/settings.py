@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'custom_auth',
     'core',
+    'artists',
+    'marketplace',
 ]
 
 MIDDLEWARE = [
