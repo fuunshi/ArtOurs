@@ -4,7 +4,7 @@ from custom_auth.models import CustomUser
 class ArtistProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, primary_key=True)
     bio = models.TextField(blank=True)
-    portfolio_link = models.URLField()
+    portfolio_link = models.URLField(blank=True)
     is_available_for_commission = models.BooleanField(default=False)
 
     def __str__(self):
