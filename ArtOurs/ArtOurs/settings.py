@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-o6z371l5xv0-mp$n$8yn11h&rih9#sojyw^q&i#b2lr%qmsr+)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '192.168.1.74']
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'core',
     'artists',
     'marketplace',
+    'customers',
+    'artworks',
 ]
 
 MIDDLEWARE = [
@@ -125,3 +127,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Assets folder (uploaded images)
+
+MEDIA_ROOT = 'assets/'
