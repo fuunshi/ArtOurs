@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('accounts/', include('custom_auth.urls')),
     path('marketplace/', include('marketplace.urls')),
+    path('artists/', include('artists.urls')),
 ]
