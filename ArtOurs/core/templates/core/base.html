@@ -4,6 +4,16 @@
 <html lang="en">
 
 <head>
+
+    <title>
+        {% block title %}
+            {% if title %}
+                {{ tite }}
+            {% else %}
+                ArtOurs
+            {% endif %}
+        {% endblock title %}
+    </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{% static 'core/css/base.css' %}" rel="stylesheet">
