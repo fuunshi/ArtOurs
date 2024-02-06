@@ -121,3 +121,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = join(BASE_DIR, 'assets')
 MEDIA_URL = '/assets/'
+
+AUTH_USER_MODEL = 'custom_auth.CustomUser'
