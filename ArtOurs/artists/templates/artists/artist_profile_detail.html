@@ -1,0 +1,14 @@
+{% extends "core/base.html" %}
+
+{% block body %}
+<h1>{{ artist.user.username }}'s Profile</h1>
+<p>Bio: {{ artist.bio }}</p>
+<p>Portfolio Link: <a href="{{ artist.portfolio_link }}">{{ artist.portfolio_link }}</a></p>
+
+<h2>Artworks:</h2>
+<ul>
+    {% for artwork in artist.artworks.all %}
+        <li>{{ artwork.title }} - ${{ artwork.price }}</li>
+    {% endfor %}
+</ul>
+{% endblock body %}
