@@ -8,4 +8,4 @@ A portal for artists to showcase their talents.
 - For customers to search quality art and craft works
 - Provide a trusty platform with minimal fraudulent activities
 
-<!-- Nothing -->
+<!-- Nothing Sus -->
