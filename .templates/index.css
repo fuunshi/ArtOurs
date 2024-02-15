@@ -1,3 +1,5 @@
+
+
 .flex {
     display: flex;
 }
@@ -8,4 +10,62 @@
 
 .space-around {
     justify-content: space-around;
+}
+
+#navbar {
+    a{
+        text-decoration: none;
+        color: black;
+        padding: 0 20px;
+    }
+    img{
+        border-radius: 60px;
+    }
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    flex: 0 0 100%;
+    width: 100%;
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.trackers {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tracker {
+    width: 10px;
+    height: 10px;
+    background-color: gray;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.active-tracker {
+    background-color: black;
+}
+
+.prev-btn,
+.next-btn {
+    display: none;
 }

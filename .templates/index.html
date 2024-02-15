@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,17 +8,75 @@
 
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    <div class="flex space-around">
+    <script src="https://kit.fontawesome.com/afe7011de4.js" crossorigin="anonymous"></script>
+    <div class="flex space-around" id="navbar">
         <div class="left-side space-between">
             <img src="../ArtOurs/artworks/art1.jpg" alt="ArtOurs" height="25" width="25">
-            <a href="#home">Home</a>
+            <a href="#home">ArtOurs</a>
+        </div>
+        <div>
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="search" name="Search">
         </div>
         <div class="right-side space-between">
-            <a href="#artists">Artists</a>
-            <a href="#login">Login</a>
-            <a href="#signup">Signup</a>
+            <a href="#artists">Artists<i class="fa-solid fa-palette"></i></a>
+            <a href="#login">Username<i class="fa-regular fa-user"></i></a>
+            <!-- <a href="#signup">Signup</a> -->
         </div>
     </div>
+    <div id="carousel" class="carousel">
+        <div class="carousel-container">
+            <div class="slide"><img src="https://source.unsplash.com/random/680x420/?lady" alt="Slide 1"></div>
+            <div class="slide"><img src="https://source.unsplash.com/random/680x420/?anime" alt="Slide 2"></div>
+            <div class="slide"><img src="https://source.unsplash.com/random/680x420/?stars" alt="Slide 3"></div>
+        </div>
+        <button class="prev-btn">&lt;</button>
+        <button class="next-btn">&gt;</button>
+        <div class="trackers"></div>
+    </div>
+
+    <script>
+        const carouselContainer = document.querySelector('.carousel-container');
+        const slides = document.querySelectorAll('.slide');
+        const trackersContainer = document.querySelector('.trackers');
+
+        let slideIndex = 0;
+
+        slides.forEach((slide, index) => {
+            const tracker = document.createElement('div');
+            tracker.classList.add('tracker');
+            if (index === 0) {
+                tracker.classList.add('active-tracker');
+            }
+            tracker.addEventListener('click', () => {
+                slideIndex = index;
+                updateSlidePosition();
+            });
+            trackersContainer.appendChild(tracker);
+        });
+
+        function updateSlidePosition() {
+            slides.forEach((slide, index) => {
+                if (index === slideIndex) {
+                    slide.classList.add('active');
+                    trackersContainer.children[index].classList.add('active-tracker');
+                } else {
+                    slide.classList.remove('active');
+                    trackersContainer.children[index].classList.remove('active-tracker');
+                }
+            });
+        }
+
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            updateSlidePosition();
+        }
+
+        setInterval(nextSlide, 5000);
+
+    </script>
 </body>
+
 </html>
