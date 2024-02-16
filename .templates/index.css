@@ -76,11 +76,13 @@
     }
 }
 
-.dropdown {
+.dropdown-content {
     display: none;
 }
 
 .dropdown:hover {
-    display: flex;
-    flex-direction: row;
+    .dropdown-content{
+        display: flex;
+        flex-direction: row;
+    }
 }
