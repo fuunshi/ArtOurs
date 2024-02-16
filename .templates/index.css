@@ -69,3 +69,18 @@
 .next-btn {
     display: none;
 }
+
+.dropdown-content{
+    a {
+        text-decoration: none;
+    }
+}
+
+.dropdown {
+    display: none;
+}
+
+.dropdown:hover {
+    display: flex;
+    flex-direction: row;
+}
