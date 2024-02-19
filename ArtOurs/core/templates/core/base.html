@@ -25,11 +25,19 @@
 <body>
     <section id='navbar'>
         <nav>
-            <div class="flex">
-                <div class="flex" id="navbar">
-                    <a href="{% url 'home' %}">Home</a>
-                    <a href="{% url 'home' %}">About</a>
-                    <a href="{% url 'home' %}">Contact Us</a>
+            <div class="flex justify-around" id="navbar">
+                <div class="flex">
+                    <a href="{% url 'home' %}"><i class="fas fa-home"></i> Home</a>
+                    <a href="{% url 'home' %}"><i class="fas fa-info-circle"></i> About</a>
+                    <a href="{% url 'home' %}"><i class="fas fa-envelope"></i> Contact Us</a>
+                </div>
+                <div class="flex">
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'signout' %}" class="logout-link"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+                    {% else %}
+                    <a href="{% url 'signin' %}" class="login-link"><i class="fas fa-sign-in-alt"></i> Sign In</a>
+                    <a href="{% url 'signup' %}" class="login-link"><i class="fas fa-user-plus"></i> Sign Up</a>
+                    {% endif %}                    
                 </div>
             </div>
         </nav>
@@ -39,6 +47,7 @@
         
         {% endblock %}
     </section>
+    <script src="https://kit.fontawesome.com/afe7011de4.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
