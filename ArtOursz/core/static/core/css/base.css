@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* :root {
+    --bodybg: #cbcdd4;
+    --link-color: black;
+    --login-color: green;
+    --logout-color: red;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: var(--bodybg);
+    font-family: Arial, sans-serif;
+}
+
+.flex {
+    display: flex;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+#navbar {
+    background-color: white;
+    padding: 10px;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: var(--link-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#navbar a:hover {
+    background-color: #f0f0f0;
+}
+
+#navbar a.login-link {
+    color: var(--login-color);
+}
+
+#navbar a.logout-link {
+    color: var(--logout-color);
+}
+
+#navbar a.login-link:hover {
+    background-color: lightgreen;
+}
+
+#navbar a.logout-link:hover {
+    background-color: lightcoral;
+} */

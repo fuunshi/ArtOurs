@@ -27,3 +27,7 @@ __pycache__/
 # Personal files
 Documentation/
 ArtOurs/assets/
+
+node_modules/
+
+Artoursz/

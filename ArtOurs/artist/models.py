@@ -5,7 +5,7 @@ class User(AbstractUser):
     is_artist = models.BooleanField(default=False)
 
 class Artist(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, related_name='artist_profile')
     bio = models.TextField(blank=True)
     profile_pic = models.ImageField(upload_to='profile_pics', blank=True)
 

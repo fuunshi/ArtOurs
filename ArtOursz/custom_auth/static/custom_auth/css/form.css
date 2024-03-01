@@ -1,0 +1,24 @@
+/* static/yourapp/css/styles.css */
+
+.custom-user-creation-form {
+    /* Your custom styles here */
+    width: 300px;
+    margin: auto;
+}
+
+.custom-user-creation-form input {
+    /* Styles for form input fields */
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.custom-user-creation-form button {
+    /* Styles for form submit button */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}

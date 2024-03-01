@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtOurs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+</head>
+
+<body>
+    <section>
+        <div id="navbar">
+            <div id="bar1">
+                <div class="flex justify-evenly py-4">
+                    <div class="left">
+                        <a href="#">ArtOurs</a>
+                    </div>
+                    <div class="flex">
+                        <div class="px-4">
+                            <input type="text" placeholder="Search"
+                                class="px-2 py-1 border border-gray-300 rounded-l-md focus:outline-none">
+                            <button
+                                class="px-2 py-1 bg-blue-500 text-white rounded-r-md focus:outline-none">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bar2">
+                <div class="flex justify-evenly mt-1">
+                    <div class="px-4">
+                        <a class="px-4" href="#">Arts</a>
+                        <a class="px-4" href="#">Artists</a>
+                    </div>
+                    <div>
+                        <a class="px-4" href="#">Log In/ Register</a>
+                        <a class="px-4" href="#">Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="flex justify-center mt-8">
+            <div class="m-4 p-[10rem] bg-gray-500">
+                ha
+            </div>
+            <div class="p-8">
+                <ul class="list-disc list-inside">
+                    <li>We Provide this</li>
+                    <li>We Provide that</li>
+                    <li>We also do that</li>
+                    <li>We can try to do that</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="flex flex-col justify-center items-center md:flex-row">
+            <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+                <div class="carousel-inner flex flex-wrap">
+                    <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                        <i class="fa fa-chevron-left fa-lg text-muted"></i>
+                        <span class="">Previous</span>
+                    </a>
+                    <div class="carousel-item hover:-translate-y-1">
+                        <img class="mx-auto" src="//placehold.it/600x400/000/fff?text=1" alt="slide 1">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=2" alt="slide 2">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=3" alt="slide 3">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=4" alt="slide 4">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=5" alt="slide 5">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=6" alt="slide 6">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=7" alt="slide 7">
+                    </div>
+                    <div class="carousel-item hidden">
+                        <img class="mx-auto" src="//placehold.it/600x400?text=8" alt="slide 8">
+                    </div>
+                    <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                        <i class="fa fa-chevron-right fa-lg text-muted"></i>
+                        <span class="">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="flex">
+            <div>
+                <p class="text-2xl">&copy; ArtOurs 2024</p>
+            </div>
+            <div class="flex flex-col">
+                <p>Contact</p>
+                <p>Bruh</p>
+            </div>
+        </div>
+    </section>
+    <script>
+        const prevButton = document.querySelector('.carousel-control-prev');
+        const nextButton = document.querySelector('.carousel-control-next');
+        const slides = document.querySelectorAll('.carousel-item');
+
+        let currentSlide = 0; // Start at the second slide
+
+        function showSlides() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide || index === (currentSlide + 1) % slides.length) {
+                    slide.classList.remove('hidden');
+                } else if (index >= currentSlide - 1 && index <= currentSlide + 1) {
+                    slide.classList.add('hidden');
+                } else {
+                    slide.classList.add('hidden');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlides();
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        showSlides();
+
+    </script>
+</body>
+
+</html>
