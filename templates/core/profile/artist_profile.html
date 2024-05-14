@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container mx-auto py-8">
+    <!-- Profile details -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+        <!-- Profile picture and username -->
+        <div class="flex items-center mb-4">
+            <div class="mr-4">
+                {% if artist.profile_picture %}
+                    <img src="{{ artist.profile_picture.url }}" alt="Profile Picture" class="rounded-full h-16 w-16">
+                {% else %}
+                    <div class="rounded-full h-16 w-16 bg-gray-300 flex items-center justify-center text-gray-500">
+                        <i class="fas fa-user fa-lg"></i>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="flex flex-col">
+                <div class="flex">
+                    <h1 class="text-3xl font-bold">{{ artist.user.username }}</h1>
+                    {% if artist.is_verified %}
+                    <i class="fas fa-check-circle text-blue-500 p-2"></i>
+                    {% endif %}
+                </div>
+                <div>
+                    <p class="text-gray-600">{{ artist.user.email }}</p>
+                </div>
+            </div>
+        </div>
+        <!-- Bio -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Bio</h3>
+            <p>{{ artist.bio }}</p>
+        </div>
+        <!-- Website -->
+        {% if artist.website %}
+            <div class="mb-4">
+                <h3 class="text-lg font-semibold mb-2">Website</h3>
+                <a href="{{ artist.website }}" class="text-blue-500 hover:underline" target="_blank">{{ artist.website }}</a>
+            </div>
+        {% endif %}
+        <!-- Available for commission -->
+        <div class="mb-4">
+            <h3 class="text-lg font-semibold mb-2">Available for Commission</h3>
+            {% if artist.available_for_commission %}
+                <span class="text-green-500 font-semibold">Yes</span>
+            {% else %}
+                <span class="text-red-500 font-semibold">No</span>
+            {% endif %}
+        </div>
+        {% if request.user == artist.user %}
+            <a href="{% url 'edit_profile' artist_username=artist.user.username %}" class="text-blue-500 hover:text-blue-700">Edit Profile</a>
+        {% endif %}
+    </div>
+
+    <!-- Works section -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-4">
+        <h2 class="text-2xl font-bold mb-4">My Works</h2>
+        {% if artist.artworks.all %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {% for artwork in artist.artworks.all %}
+                    <div class="border border-gray-200 p-4 rounded-lg">
+                        <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="w-full rounded-lg mb-2">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-semibold">{{ artwork.title }}</h3>
+                            <span class="text-gray-600"><i class="fas fa-heart"></i> {{ artwork.likes.count }}</span>
+                        </div>
+                        <p class="text-sm text-gray-500">{{ artwork.description }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-gray-500">No works found.</p>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock body %}

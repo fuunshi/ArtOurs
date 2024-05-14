@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">Marketplace</h1>
+        <!-- Put art for sale option -->
+        {% if request.user.is_authenticated and request.user.is_artist %}
+            <a href="{% url 'art_add' %}" class="text-blue-500 hover:text-blue-700">Put art for sale</a>
+        {% endif %}
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {% for artwork in artworks %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="{% url 'artwork_detail' artwork.id %}">
+                <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="w-full h-48 object-cover">
+            </a>
+            <div class="p-4">
+                <a href="#">
+                    <div class="flex items-center mb-2">
+                        {% if artwork.artist.profile_picture %}
+                        <img src="{{ artwork.artist.profile_picture.url }}" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
+                        {% else %}
+                        <img src="{% static 'images/default-profile-picture.png' %}" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
+                        {% endif %}
+                        <span class="text-gray-600">{{ artwork.artist.username }}</span>
+                        {% if artwork.artist.is_verified %}
+                        <i class="fas fa-check-circle text-blue-500 ml-1" title="Verified Artist"></i>
+                        {% endif %}
+                    </div>
+                </a>
+                <h2 class="text-lg font-bold text-gray-800 mb-2">{{ artwork.title }}</h2>
+                <p class="text-gray-600 mb-4">{{ artwork.description|truncatechars:100 }}</p>
+                <div class="flex items-center justify-between">
+                    <span class="text-gray-800 font-bold">{{ artwork.price }}</span>
+                    <div>
+                        <form action="{% url 'like_artwork' artwork.id %}" method="post" class="inline-block mr-2">
+                            {% csrf_token %}
+                            <button type="submit" class="text-gray-500 hover:text-red-500">
+                                <i class="fas fa-heart"></i>
+                            </button>
+                        </form> 
+                        <span class="text-gray-600">{{ artwork.likes.count }} Likes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+    
+{% endblock body %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4">My Profile</h1>
+    <div class="bg-white rounded-lg shadow-md p-8">
+        <div class="flex items-center mb-6">
+            <div class="w-24 h-24 rounded-full overflow-hidden mr-4">
+                {% if artist.profile_picture %}
+                <img src="{{ artist.profile_picture.url }}" alt="{{ artist.username }}" class="w-full h-full object-cover">
+                {% else %}
+                <img src="{% static 'images/default-profile-picture.png' %}" alt="{{ artist.username }}" class="w-full h-full object-cover">
+                {% endif %}
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">{{ artist.username }}</h2>
+                <a href="#" class="text-blue-500 hover:text-blue-700">Edit Profile</a>
+            </div>
+        </div>
+        {% comment %} <form action="{% url 'update_profile' %}" method="post" enctype="multipart/form-data"> {% endcomment %}
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="profile_picture" class="block text-gray-700 font-bold mb-2">Profile Picture</label>
+                <input type="file" name="profile_picture" id="profile_picture" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="bio" class="block text-gray-700 font-bold mb-2">Bio</label>
+                <textarea name="bio" id="bio" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ artist.bio }}</textarea>
+            </div>
+            <div class="mb-4">
+                <label for="website" class="block text-gray-700 font-bold mb-2">Website</label>
+                <input type="text" name="website" id="website" value="{{ artist.website }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Save Changes
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

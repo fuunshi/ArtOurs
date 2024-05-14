@@ -1,0 +1,36 @@
+<!-- artist_list.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+  Artist List
+{% endblock %}
+
+{% block body %}
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Artist List</h1>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {% for artist in artists %}
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <a href="{% url 'artist_profile' artist.user.username %}">
+                {% if artist.profile_picture %}
+                    <img src="{{ artist.profile_picture.url }}" alt="{{ artist.username }}" class="w-full h-48 object-cover">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}/uploads/ArtOurs.png" alt="{{ artist.username }}" class="w-full h-48 object-cover">
+                {% endif %}
+            </a>            
+          <div class="p-4">
+            <h2 class="text-lg font-bold text-gray-800 mb-2">
+                {{ artist.user.username }}
+                {% if artist.is_verified %}
+                    <i class="fas fa-check-circle text-blue-500 ml-1" title="Curated Artist"></i>
+                {% endif %}
+            </h2>
+            <p class="text-gray-600 mb-4">{{ artist.bio }}</p>
+            <a href="{% url 'artist_profile' artist.user.username %}" class="text-blue-500 hover:underline">View Profile</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

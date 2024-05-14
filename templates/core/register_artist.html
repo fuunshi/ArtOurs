@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<div class="max-w-md mx-auto bg-gray-100 p-4 rounded-lg">
+    <h2 class="text-2xl font-semibold mb-4">Register as Artist</h2>
+    <form method="post" enctype="multipart/form-data" class="space-y-4">
+        {% csrf_token %}
+        <div class="space-y-1">
+            <label for="id_bio" class="block font-medium">Bio:</label>
+            {{ form.bio }}
+        </div>
+        <div class="space-y-1">
+            <label for="id_website" class="block font-medium">Website:</label>
+            {{ form.website }}
+        </div>
+        <div class="space-y-1">
+            <label for="id_profile_picture" class="block font-medium">Profile Picture:</label>
+            {{ form.profile_picture }}
+        </div>
+        <div class="space-y-1">
+            <label for="id_available_for_commission" class="block font-medium">Available for Commission:</label>
+            {{ form.available_for_commission }}
+        </div>
+        <button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Register</button>
+    </form>
+</div>
+{% endblock %}

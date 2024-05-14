@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container mx-auto px-4 py-8">
+    <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 mb-8 md:mb-0">
+            <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="w-full rounded-lg shadow-md">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">{{ artwork.title }}</h1>
+            <div class="flex items-center mb-4">
+                <img src="{{ artwork.artist.profile_picture.url }}" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
+                <h2>{{ artwork.artist.user.username }}</h2>
+                {% if artwork.artist.is_verified %}
+                    <i class="fas fa-check-circle text-blue-500 ml-1" title="Verified Artist"></i>
+                {% endif %}
+                <span class="text-gray-600">{{ artwork.artist.username }}</span>
+            </div>
+            <p class="text-gray-600 mb-4">{{ artwork.description }}</p>
+            <p class="text-gray-800 font-bold mb-2">Price: {{ artwork.price }}</p>
+            {% if artwork.location %}
+                <p class="text-gray-600 mb-4">Location: {{ artwork.location }}</p>
+            {% endif %}
+            {% if artwork.medium %}
+                <p class="text-gray-600 mb-4">Medium: {{ artwork.medium }}</p>
+            {% endif %}
+
+            <!-- Edit option -->
+            {% if request.user.is_authenticated and request.user.username == artwork.artist.user.username %}
+                <div class="mt-4">
+                    <a href="{% url 'edit_artwork' artwork.id %}" class="text-blue-500 hover:text-blue-700">Edit Artwork</a>
+                </div>
+            {% endif %}{% if request.user.is_authenticated and request.user.username == artwork.artist.user.username %}
+                <div class="mt-8">
+                    <form action="{% url 'delete_artwork' artwork.id %}" method="post" onsubmit="return confirm('Are you sure you want to delete this artwork?');">
+                        {% csrf_token %}
+                        <button type="submit" class="text-red-500 hover:text-red-700">Delete Artwork</button>
+                    </form>
+                </div>
+            {% endif %}
+
+            <!-- Delete Option -->
+
+
+            <!-- Buy Now -->
+            {% if not request.user.is_authenticated or request.user != artwork.artist.user %}
+                <div class="mt-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Buy Now</h2>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        Complete Purchase
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="mt-12">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Reviews</h2>
+        {% for review in artwork.reviews.all %}
+            <div class="bg-gray-100 p-4 rounded-lg mb-2">
+                <div class="flex items-center mb-2">
+                    <img src="{{ review.user.profile_picture.url }}" alt="{{ review.user.username }}" class="w-6 h-6 rounded-full mr-2">
+                    <span class="text-gray-600">{{ review.user.username }}</span>
+                </div>
+                <p class="text-gray-700">{{ review.content }}</p>
+                <div class="flex items-center">
+                    {% for _ in "x"|rjust:review.stars %}
+                        <i class="fas fa-star text-yellow-500"></i>
+                    {% endfor %}
+                </div>
+            </div>
+        {% empty %}
+            <p class="text-gray-600">No reviews yet.</p>
+        {% endfor %}
+        <a href="{% url 'add_review' artwork.id %}" class="text-blue-500 hover:text-blue-700">Add Review</a>
+    </div>
+</div>
+{% endblock body %}
