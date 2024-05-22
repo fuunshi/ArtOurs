@@ -12,19 +12,24 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {% for artwork in artworks %}
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden relative">
             <a href="{% url 'artwork_detail' artwork.id %}">
                 <img src="{{ artwork.image.url }}" alt="{{ artwork.title }}" class="w-full h-48 object-cover">
+                {% if artwork.is_booked %}
+                    <div class="absolute top-5 left-0 transform -rotate-45 bg-red-600 text-white text-sm font-bold px-4 py-1 shadow-md" style="transform: translate(-25%, -50%) rotate(-45deg);">
+                        Booked
+                    </div>
+                {% endif %}
             </a>
             <div class="p-4">
-                <a href="#">
+                <a href="{% url 'artist_profile' artwork.artist.user.username %}">
                     <div class="flex items-center mb-2">
                         {% if artwork.artist.profile_picture %}
                         <img src="{{ artwork.artist.profile_picture.url }}" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
                         {% else %}
-                        <img src="{% static 'images/default-profile-picture.png' %}" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
+                        <img src="{{ MEDIA_URL }}/uploads/ArtOurs.png" alt="{{ artwork.artist.username }}" class="w-8 h-8 rounded-full mr-2">
                         {% endif %}
-                        <span class="text-gray-600">{{ artwork.artist.username }}</span>
+                        <span class="text-gray-600">{{ artwork.artist.user.username }}</span>
                         {% if artwork.artist.is_verified %}
                         <i class="fas fa-check-circle text-blue-500 ml-1" title="Verified Artist"></i>
                         {% endif %}
@@ -49,5 +54,5 @@
         {% endfor %}
     </div>
 </div>
-    
+
 {% endblock body %}

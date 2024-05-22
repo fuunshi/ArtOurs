@@ -8,6 +8,8 @@ class Artwork(models.Model):
     image = models.ImageField(upload_to='artworks')
     artist = models.ForeignKey(Artist, on_delete=models.CASCADE, related_name='artworks')
     likes = models.ManyToManyField(CustomUser, related_name='liked_artworks', blank=True)
+    is_booked = models.BooleanField(default=False)
+    booked_by = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, blank=True, related_name='booked_artworks')
 
     def __str__(self):
         return self.title

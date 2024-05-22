@@ -101,3 +101,15 @@ def delete_artwork(request, artwork_id):
         return redirect('marketplace') 
     else:
         return redirect('home') # TODOPermission Denied URL
+    
+@login_required
+def purchase_artwork(request, artwork_id):
+    artwork = get_object_or_404(Artwork, id=artwork_id)
+    if not artwork.is_booked:
+        artwork.is_booked = True
+        artwork.booked_by = request.user
+        artwork.save()
+
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+

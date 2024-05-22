@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseForbidden
+from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.views.generic import CreateView
@@ -9,7 +10,7 @@ from .models import Artist
 from marketplace.models import Artwork
 
 def index(request):
-    hot_artworks = Artwork.objects.order_by('-likes')[:4]
+    hot_artworks = Artwork.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[:4]
     return render(request, 'core/index.html', {'hot_artworks':hot_artworks})
 
 def search(request):

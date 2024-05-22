@@ -6,12 +6,14 @@ from .views import (
 	add_artwork,
     like_artwork,
     add_review,
-    delete_artwork
+    delete_artwork,
+    purchase_artwork
 )
 
 urlpatterns = [
     path("list/", marketplace, name='marketplace'),
     path("list/<int:artwork_id>/", artwork_detail, name="artwork_detail"),
+    path("list/<int:artwork_id>/purchase", purchase_artwork, name="purchase_artwork"),
     path("list/<int:artwork_id>/edit", edit_artwork, name="edit_artwork"),
     path("list/<int:artwork_id>/delete", delete_artwork, name="delete_artwork"),
     path("list/<int:artwork_id>/addreview", add_review, name="add_review"),
