@@ -81,14 +81,14 @@ WSGI_APPLICATION = 'ArtOurs.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.sqlite3',   # This is sqlite settings
-        # 'NAME': BASE_DIR / 'db.sqlite3',          # This is sqlite settings
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'artours',
-        'USER': 'artoursadmin',
-        'PASSWORD': 'artoursadmin123',
-        'HOST': 'localhost',  # or your database host
-        'PORT': '5432',       # or your database port
+        'ENGINE': 'django.db.backends.sqlite3',   # This is sqlite settings
+        'NAME': BASE_DIR / 'db.sqlite3',          # This is sqlite settings
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': 'artours',
+        # 'USER': 'artoursadmin',
+        # 'PASSWORD': 'artoursadmin123',
+        # 'HOST': 'localhost',  # or your database host
+        # 'PORT': '5432',       # or your database port
     }
 }
 
